@@ -12,6 +12,6 @@ services:
       - key: ACCESS_TOKEN_EXPIRE_MINUTES
         value: 60
       - key: DATABASE_URL
-        value: sqlite:///./app.db
+        sync: false # Set this to your Neon connection string in Render Dashboard
       - key: SECRET_KEY
         generateValue: true
