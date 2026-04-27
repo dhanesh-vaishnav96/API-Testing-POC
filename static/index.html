@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Testing API POC — CRUD API system with JWT authentication" />
+    <title>Testing API - POC</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <div class="nav" id="navbar">
+        <span>Testing API - POC</span>
+        <button id="nav-login-btn" onclick="showPage('login')">Login</button>
+        <button id="nav-register-btn" onclick="showPage('register')">Register</button>
+        <button id="nav-dashboard-btn" class="hidden" onclick="showPage('dashboard')">Dashboard</button>
+        <button id="nav-logout-btn" class="hidden" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- ========== LOGIN PAGE ========== -->
+    <div id="page-login" class="page active">
+        <div class="container">
+            <h1>Login</h1>
+            <div id="login-msg"></div>
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" placeholder="you@example.com" />
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" placeholder="Your password" />
+            </div>
+            <button class="btn btn-primary" id="login-submit-btn" onclick="handleLogin()">Login</button>
+            <p class="mt-10">
+                Don't have an account?
+                <button class="link" onclick="showPage('register')">Register here</button>
+            </p>
+        </div>
+    </div>
+
+    <!-- ========== REGISTER PAGE ========== -->
+    <div id="page-register" class="page">
+        <div class="container">
+            <h1>Register</h1>
+            <div id="register-msg"></div>
+            <div class="form-group">
+                <label for="register-name">Name</label>
+                <input type="text" id="register-name" placeholder="John Doe" />
+            </div>
+            <div class="form-group">
+                <label for="register-email">Email</label>
+                <input type="email" id="register-email" placeholder="you@example.com" />
+            </div>
+            <div class="form-group">
+                <label for="register-password">Password</label>
+                <input type="password" id="register-password" placeholder="Min 6 characters" />
+            </div>
+            <button class="btn btn-primary" id="register-submit-btn" onclick="handleRegister()">Register</button>
+            <p class="mt-10">
+                Already have an account?
+                <button class="link" onclick="showPage('login')">Login here</button>
+            </p>
+        </div>
+    </div>
+
+    <!-- ========== DASHBOARD PAGE ========== -->
+    <div id="page-dashboard" class="page">
+        <div class="container">
+            <h1>Dashboard — All Users</h1>
+            <div id="dashboard-msg"></div>
+            <button class="btn btn-primary mb-10" id="show-create-form-btn" onclick="showPage('create-user')">+ Create User</button>
+            <table id="users-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="users-tbody">
+                    <!-- Rows injected by JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ========== CREATE USER PAGE ========== -->
+    <div id="page-create-user" class="page">
+        <div class="container">
+            <h1>Create User</h1>
+            <div id="create-msg"></div>
+            <div class="form-group">
+                <label for="create-name">Name</label>
+                <input type="text" id="create-name" placeholder="Jane Doe" />
+            </div>
+            <div class="form-group">
+                <label for="create-email">Email</label>
+                <input type="email" id="create-email" placeholder="jane@example.com" />
+            </div>
+            <div class="form-group">
+                <label for="create-password">Password</label>
+                <input type="password" id="create-password" placeholder="Min 6 characters" />
+            </div>
+            <button class="btn btn-primary" id="create-user-btn" onclick="handleCreateUser()">Create</button>
+            <button class="btn" onclick="showPage('dashboard')">Cancel</button>
+        </div>
+    </div>
+
+    <!-- ========== UPDATE USER PAGE ========== -->
+    <div id="page-update-user" class="page">
+        <div class="container">
+            <h1>Update User</h1>
+            <div id="update-msg"></div>
+            <input type="hidden" id="update-user-id" />
+            <div class="form-group">
+                <label for="update-name">Name</label>
+                <input type="text" id="update-name" />
+            </div>
+            <div class="form-group">
+                <label for="update-email">Email</label>
+                <input type="email" id="update-email" />
+            </div>
+            <div class="form-group">
+                <label for="update-password">New Password (leave blank to keep current)</label>
+                <input type="password" id="update-password" placeholder="Optional" />
+            </div>
+            <button class="btn btn-primary" id="update-user-btn" onclick="handleUpdateUser()">Update</button>
+            <button class="btn" onclick="showPage('dashboard')">Cancel</button>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
